@@ -21,4 +21,9 @@ public class BeerServiceImpl implements BeerService {
                 .id(UUID.randomUUID())
                 .build();
     }
+
+    @Override
+    public void update(UUID beerId, BeerDto beer) {
+        //TODO add impl
+    }
 }
