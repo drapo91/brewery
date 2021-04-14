@@ -1,10 +1,10 @@
-package com.drapo.brewery.services;
+package com.drapo.brewery.services.v2;
 
 import com.drapo.brewery.web.model.BeerDto;
 
 import java.util.UUID;
 
-public interface BeerService {
+public interface BeerServiceV2 {
     public BeerDto getBeerById(UUID beerId);
 
     BeerDto saveBeer(BeerDto beer);
