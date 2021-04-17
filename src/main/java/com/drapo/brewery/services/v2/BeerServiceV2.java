@@ -1,6 +1,7 @@
 package com.drapo.brewery.services.v2;
 
 import com.drapo.brewery.web.model.BeerDto;
+import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
