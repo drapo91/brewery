@@ -5,9 +5,15 @@ import com.drapo.brewery.web.model.CustomerDto;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/customer")
@@ -26,7 +32,7 @@ public class CustomerController {
 
     //post
     @PostMapping
-    public ResponseEntity createCustomer(@RequestBody CustomerDto customer){
+    public ResponseEntity createCustomer(@Valid @RequestBody CustomerDto customer){
         CustomerDto savedCustomer = customerService.save(customer);
 
         HttpHeaders headers = new HttpHeaders();
@@ -37,7 +43,7 @@ public class CustomerController {
 
     //put
     @PutMapping("{customerId}")
-    public ResponseEntity updateCustomer(@PathVariable("customerId") UUID customerId, @RequestBody CustomerDto customer){
+    public ResponseEntity updateCustomer(@PathVariable("customerId") UUID customerId, @Valid @RequestBody CustomerDto customer){
         customerService.update(customerId, customer);
 
         return new ResponseEntity(HttpStatus.NO_CONTENT);

@@ -54,23 +54,4 @@ public class BeerControllerV2 {
     public void deleteBeer(@PathVariable("beerId") UUID beerId){
         beerServiceV2.removeById(beerId);
     }
-
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<List> validationErrorHandler(MethodArgumentNotValidException e) {
-        List<String> errores = new ArrayList<>();
-
-        List<FieldError> fieldErrors = e.getBindingResult().getAllErrors().stream()
-                .map(FieldError.class::cast)
-                .collect(Collectors.toList());
-
-        fieldErrors.forEach(fieldError -> {
-
-            errores.add( String.format("Bad Request %s : %s : Rejected value : ---> %s"
-                    ,fieldError.getField()
-                    ,fieldError.getDefaultMessage()
-                    ,fieldError.getRejectedValue()));
-        });
-
-        return new ResponseEntity<>(errores, HttpStatus.BAD_REQUEST);
-    }
 }
